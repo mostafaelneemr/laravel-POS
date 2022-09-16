@@ -1,13 +1,14 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Http\Requests\invoice\StoreInvoiceRequest;
+use App\Http\Requests\invoice\UpdateInvoiceRequest;
 use App\Models\category;
 use App\Models\invoice;
 use App\Models\invoice_details;
 use App\Models\product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Http\Requests\StoreInvoiceRequest;
 use App\Models\User;
 use App\Notifications\AddInvoice;
 use Illuminate\Support\Facades\Notification;
@@ -72,9 +73,8 @@ class InvoiceController extends Controller
         $categories = category::all();
         return view('backend.invoices.edit', compact('categories', 'invoice'));
     }
-
     
-    public function update(StoreInvoiceRequest $request, $id)
+    public function update(UpdateInvoiceRequest $request, $id)
     {
         try {
             $invoice = invoice::findorFail($id);
@@ -93,7 +93,7 @@ class InvoiceController extends Controller
                 'notes' => $request->notes,
             ]);
             session()->flash('edit', __('backend/message.edit invoice'));
-            return redirect()->back();
+            return redirect()->route('invoice.index');
 
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);

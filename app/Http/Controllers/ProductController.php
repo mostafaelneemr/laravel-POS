@@ -9,25 +9,21 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    
     public function index()
     {
         $products = product::get();
         return view('backend.products.index', compact('products'));
     }
 
-    
     public function create()
     {
         $categories = category::get();
         return view('backend.products.create',compact('categories'));
     }
-
     
     public function store(StoreProductRequest $request)
     {
         try {
-
             product::create([
                 'name'=> ['ar' =>$request->name, 'en' => $request->name_en],
                 'price'=>$request->price,
@@ -51,7 +47,6 @@ class ProductController extends Controller
         return view('backend.products.edit',compact('product' , 'categories'));
     }
 
-    
     public function update(StoreProductRequest $request, $id)
     {
         $products = product::findorfail($id);
@@ -65,7 +60,7 @@ class ProductController extends Controller
                 'notes'=>$request->notes,
             ]);
             session()->flash('edit', __('backend/message.edit product'));
-            return redirect()->back();
+            return redirect()->route('products.index');
 
         }
 

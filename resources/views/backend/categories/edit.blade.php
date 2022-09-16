@@ -36,7 +36,6 @@
 
                    </div>
                    <br>
-
                    <div class="row">
                        <div class="col">
                            <label>{{__('website/category.notes')}}</label>
@@ -46,12 +45,10 @@
                        </div>
                    </div>
 
-
                    <div class="modal-footer">
                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('website/category.cancel')}}</button>
                        <button class="btn btn-primary">{{__('website/category.confirm')}}</button>
                    </div>
-
                </form>
            </div>
        </div>

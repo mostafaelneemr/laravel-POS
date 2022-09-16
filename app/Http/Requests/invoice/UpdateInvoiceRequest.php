@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\invoice;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreInvoiceRequest extends FormRequest
+class UpdateInvoiceRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,13 +21,14 @@ class StoreInvoiceRequest extends FormRequest
      *
      * @return array
      */
+
     public function rules()
     {
 
         $todayDate = date('m/d/Y');
 
         return [
-            'invoice_number' => 'required|unique:invoices',
+            'invoice_number' => 'required|exists:invoices',
             'invoice_date' => 'required|before_or_equal:'.$todayDate,
             'discount' => 'required',
             'price' => 'required',
@@ -47,9 +48,6 @@ class StoreInvoiceRequest extends FormRequest
             'price.required' => __('backend/message.price'),
             'tax_value.required' => __('backend/message.tax_value req'),
             'notes.max' => __('backend/message.notes max'),
-            
         ];
     }
-
 }
-

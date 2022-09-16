@@ -24,14 +24,6 @@ class CategoryController extends Controller
             ]);
             session()->flash('Add',  __('backend/message.add category') );
             return redirect('categories');
-
-            // $categories = new categorie();
-            // $categories->name = ['ar' => $request->name, 'en' => $request->name_en];
-            // $categories->notes = $request->notes;
-            // $categories->save();
-            //  session()->flash('Add', 'تم اضافة المنتج بنجاح ');
-            // return redirect('categories');
-
         }
 
         catch (\Exception $e) {
@@ -49,25 +41,25 @@ class CategoryController extends Controller
                 'name'=> ['ar' => $request->name, 'en' => $request->name_en],
                 'notes'=>$request->notes,
             ]);
+
             session()->flash('edit', __('backend/message.edit category'));
-            return redirect('categories');
+            return redirect()->back();
 
         }
         catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
-
     }
 
-    
     public function destroy($id)
     {
         try {
-                category::destroy($id);
-                session()->flash('Deleted', __('backend/message.delete category'));
-                return redirect('categories');
+            category::destroy($id);
+            session()->flash('Deleted', __('backend/message.delete category'));
+            return redirect('categories');
+
         } catch (\Exception $e) {
-                return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
             }
     }
 }
