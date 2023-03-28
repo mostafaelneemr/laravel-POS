@@ -27,7 +27,7 @@ Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
         'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
-    ], function(){ 
+    ], function(){
 
         Route::get('/', function(){
             return view('auth.login');
@@ -57,12 +57,13 @@ Route::group(
         Route::get('markAsRead_All', [InvoiceController::class, 'markAsRead_All'])->name('markAsRead_All');
 
         Route::resource('archive', ArchiveInvoicesController::class);
-        
+
         // permission  // roles
         Route::resource('roles', RoleController::class);
+
         // users
         Route::resource('users', UserController::class);
-        
+
         require __DIR__.'/auth.php';
 
     });

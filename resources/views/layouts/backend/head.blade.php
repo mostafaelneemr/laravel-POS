@@ -11,7 +11,7 @@
 <!-- favicon -->
 <link rel="shortcut icon" href="{{ URL::asset('backend/assets/images/favicon.ico') }}" type="image/x-icon"/>
 {{-- fonts --}}
-<link href="{{asset('backend/assets/css/fontawesome/css/all.css')}}" rel="stylesheet">
+{{-- <link href="{{asset('backend/assets/css/fontawesome/css/all.css')}}" rel="stylesheet"> --}}
 
 @if (App::getlocale() == 'en')
     <link href="{{URL::asset('backend/assets/css/style.css')}}" rel="stylesheet">

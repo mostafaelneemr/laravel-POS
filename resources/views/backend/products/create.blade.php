@@ -50,7 +50,7 @@
 
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label>اسم القسم</label>
+                                <label>{{ __('website/product.category name') }}</label>
                                 <select name="categorie_id" id="" class="form-control p-1">
                                     <option value="" disabled selected>{{__('website/invoice.choose-menu')}}</option>
                                     @foreach($categories as $categorie)

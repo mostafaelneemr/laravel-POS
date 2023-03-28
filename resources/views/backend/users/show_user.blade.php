@@ -29,7 +29,7 @@
             <div class="card card-statistics h-100">
                 <div class="card-body">
 
-                    @can('add user')
+                    @can('user-create')
                         <div class="pull-right">
                             <a class="btn btn-success" href="{{ route('users.create') }}">{{__('website/users.add user')}}</a>
                         </div>
@@ -57,11 +57,11 @@
                                         @endif
                                     </td>
                                     <td>
-                                        @can('edit user')
+                                        @can('user-edit')
                                             <a class="btn btn-warning" href="{{ route('users.edit',$user->id) }}">{{__('website/users.edit')}}</a>
                                         @endcan
 
-                                        @can('delete user')
+                                        @can('user-delete')
                                             {!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id],'style'=>'display:inline']) !!}
                                             {!! Form::submit(__('website/users.delete'), ['class' => 'btn btn-danger']) !!}
                                             {!! Form::close() !!}

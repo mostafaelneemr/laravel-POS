@@ -5,11 +5,9 @@
 @endsection
 
 @section('css')
-
 @endsection
 
 @section('content')
-
     <div class="page-title">
         <div class="row">
             <div class="col-sm-6">
@@ -17,8 +15,8 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-                    <li class="breadcrumb-item"><a href="{{url('dashboard')}}" class="default-color">{{__('website/dashboard.Home')}}</a></li>
-                    <li class="breadcrumb-item active"><a href="{{url('invoice')}}">{{__('website/dashboard.invoice-menu')}}</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('dashboard')}}" class="default-color">{{__('website/dashboard.Home')}}</a></li>
+                    <li class="breadcrumb-item active"><a href="{{route('invoice.index')}}">{{__('website/dashboard.invoice-menu')}}</a></li>
                 </ol>
             </div>
         </div>
@@ -126,7 +124,6 @@
                                 @enderror
                             </div>
 
-
                             <div class="col">
                                 <label> {{__('website/invoice.tax-value')}} </label>
                                 <input type="text" readonly name="tax_value" id="tax_value"
@@ -195,7 +192,6 @@
                     });
                 </script>
 
-
                 {{-- get price --}}
                 <script>
                     $(document).ready(function () {
@@ -218,7 +214,6 @@
                     });
                 </script>
 
-
                 <script>
 
                     function myFunction1(){
@@ -237,6 +232,8 @@
                         var price =  parseFloat(document.getElementById("price").value);
                         var discount =  parseFloat(document.getElementById("discount").value);
                         document.getElementById("total_after_discount").value = price-discount;
+
+                        myFunction1();
                     }
 
 

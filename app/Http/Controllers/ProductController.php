@@ -9,6 +9,14 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:Products|create product|edit product|delete product', ['only' => ['index','store']]);
+        $this->middleware('permission:create product', ['only' => ['create','store']]);
+        $this->middleware('permission:edit product', ['only' => ['edit','update']]);
+        $this->middleware('permission:delete product', ['only' => ['destroy']]);
+    }
+
     public function index()
     {
         $products = product::get();
@@ -20,7 +28,7 @@ class ProductController extends Controller
         $categories = category::get();
         return view('backend.products.create',compact('categories'));
     }
-    
+
     public function store(StoreProductRequest $request)
     {
         try {
@@ -39,7 +47,7 @@ class ProductController extends Controller
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
-    
+
     public function edit($id)
     {
         $product = product::findorfail($id);

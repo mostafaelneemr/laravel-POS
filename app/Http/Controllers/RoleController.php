@@ -38,12 +38,12 @@ class RoleController extends Controller
             'name' => 'required|unique:roles,name',
             'permission' => 'required',
         ]);
-    
+
         $role = Role::create(['name' => $request->input('name')]);
         $role->syncPermissions($request->input('permission'));
-        
+
         session()->flash('Add', 'Permission Add Successfuly');
-        return redirect()->back();
+        return redirect()->route('roles.index');
     }
 
     public function show($id)
@@ -52,7 +52,7 @@ class RoleController extends Controller
         $rolePermissions = Permission::join("role_has_permissions","role_has_permissions.permission_id","=","permissions.id")
             ->where("role_has_permissions.role_id",$id)
             ->get();
-    
+
         return view('backend.roles.show',compact('role','rolePermissions'));
     }
 
@@ -63,7 +63,7 @@ class RoleController extends Controller
         $rolePermissions = DB::table("role_has_permissions")->where("role_has_permissions.role_id",$id)
             ->pluck('role_has_permissions.permission_id','role_has_permissions.permission_id')
             ->all();
-    
+
         return view('backend.roles.edit',compact('role','permission','rolePermissions'));
     }
 
@@ -73,13 +73,13 @@ class RoleController extends Controller
             'name' => 'required',
             'permission' => 'required',
         ]);
-    
+
         $role = Role::find($id);
         $role->name = $request->input('name');
         $role->save();
-    
+
         $role->syncPermissions($request->input('permission'));
-    
+
         session()->flash('edit', 'Permission Edit Successfuly');
         return redirect()->back();
     }

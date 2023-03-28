@@ -7,7 +7,7 @@
 <script type="text/javascript">var plugin_path = '{{ asset('backend/assets/js') }}/';</script>
 <!-- chart -->
 <script src="{{ URL::asset('backend/assets/js/chart-init.js') }}"></script>
-<link href="{{asset('backend/assets/css/fontawesome/js/all.js')}}" rel="stylesheet">
+{{-- <link href="{{asset('backend/assets/css/fontawesome/js/all.js')}}" rel="stylesheet"> --}}
 <!-- calendar -->
 <script src="{{ URL::asset('backend/assets/js/calendar.init.js') }}"></script>
 <!-- charts sparkline -->

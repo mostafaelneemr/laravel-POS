@@ -31,7 +31,7 @@ class StoreInvoiceRequest extends FormRequest
             'invoice_date' => 'required|before_or_equal:'.$todayDate,
             'discount' => 'required',
             'price' => 'required',
-            'tax_value' => 'required',
+            'tax_rate' => 'nullable',
             'notes' => 'max:200',
         ];
     }
@@ -45,9 +45,9 @@ class StoreInvoiceRequest extends FormRequest
             'invoice_date.after_or_equal' => __('backend/message.invo date after'),
             'discount.required' => __('backend/message.invo discount'),
             'price.required' => __('backend/message.price'),
-            'tax_value.required' => __('backend/message.tax_value req'),
+//            'tax_value.required' => __('backend/message.tax_value req'),
             'notes.max' => __('backend/message.notes max'),
-            
+
         ];
     }
 }

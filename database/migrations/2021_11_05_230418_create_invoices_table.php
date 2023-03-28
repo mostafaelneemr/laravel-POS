@@ -21,9 +21,9 @@ class CreateInvoicesTable extends Migration
             $table->foreignId('product_id')->constrained('products')->cascadeOnDelete();
             $table->decimal('price',8,2);
             $table->decimal('discount',8,2);
-            $table->string('tax_rate');
-            $table->decimal('tax_value',8,2);
-            $table->decimal('total',8,2);
+            $table->string('tax_rate')->nullable();
+            $table->decimal('tax_value',8,2)->nullable()->default(0);
+            $table->decimal('total',8,2)->nullable()->default(0);
             $table->integer('status');
             $table->text('notes')->nullable();
             $table->softDeletes();

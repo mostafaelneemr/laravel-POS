@@ -7,13 +7,21 @@ use App\Models\category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
-{ 
+{
+    function __construct()
+    {
+        $this->middleware('permission:categories|create category|edit category|delete category', ['only' => ['index','store']]);
+        $this->middleware('permission:create category', ['only' => ['create','store']]);
+        $this->middleware('permission:edit category', ['only' => ['edit','update']]);
+        $this->middleware('permission:delete category', ['only' => ['destroy']]);
+    }
+
     public function index()
     {
         $categories = category::all();
         return view('backend.categories.index', compact('categories') );
     }
-   
+
     public function store(storeCategoryRequest $request)
     {
         try {

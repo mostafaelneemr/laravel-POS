@@ -12,7 +12,7 @@
 
            <!-- component -->
             <li class="mt-10 mb-10 text-muted pl-4 font-medium menu-title">{{ trans('backend/main-sidebar.Components') }}</li>
-           
+
             <!-- menu item Elements-->
             @can('invoices')
             <li>
@@ -20,7 +20,7 @@
                 <div class="pull-left"><i class="ti-calendar"></i><span class="right-nav-text">{{__('backend/main-sidebar.invoice')}}</span></div>
                 <div class="pull-right"><i class="ti-plus"></i></div><div class="clearfix"></div>
               </a>
-              <ul id="calendar-menu" class="collapse" data-parent="#sidebarnav">    
+              <ul id="calendar-menu" class="collapse" data-parent="#sidebarnav">
               @can('view invoice')
                 <li> <a href="{{route('invoice.index')}}">{{__('backend/main-sidebar.view invoice')}}</a> </li>
               @endcan
@@ -33,7 +33,7 @@
               </ul>
             </li>
             @endcan
-            
+
             @can('Elements')
            <li>
              <a href="javascript:void(0);" data-toggle="collapse" data-target="#elements">
@@ -60,22 +60,22 @@
                 <div class="pull-right"><i class="ti-plus"></i></div><div class="clearfix"></div>
               </a>
               <ul id="chart" class="collapse" data-parent="#sidebarnav">
-            @can('user permission')                
+            @can('user permission')
                 <li> <a href="{{route('roles.index')}}">{{__('backend/main-sidebar.User Permissions')}}</a> </li>
             @endcan
-            @can('user list')
+            @can('user-list')
                 <li> <a href="{{route('users.index')}}">{{__('backend/main-sidebar.users list')}}</a> </li>
             @endcan
               </ul>
-            </li>            
+            </li>
             @endcan
            <!-- menu item todo-->
            {{-- <li>
              <a href="todo-list.html"><i class="ti-menu-alt"></i><span class="right-nav-text">Todo list</span> </a>
            </li> --}}
             <!-- menu item chat-->
-            {{-- <li> 
-              <a href="chat-page.html"><i class="ti-comments"></i><span class="right-nav-text">Chat </span></a>  
+            {{-- <li>
+              <a href="chat-page.html"><i class="ti-comments"></i><span class="right-nav-text">Chat </span></a>
             </li> --}}
             <!-- menu item mailbox-->
            {{-- <li>
@@ -120,7 +120,7 @@
            </ul>
          </li>
        </ul>
-     </div> 
-   </div> 
-   
+     </div>
+   </div>
+
    <!-- Left Sidebar End-->

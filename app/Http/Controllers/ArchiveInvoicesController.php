@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class ArchiveInvoicesController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:invoices|archive invoice', ['only' => ['index', 'update', 'destroy']]);
+    }
+
     public function index()
     {
         $invoices = invoice::onlyTrashed()->get();
@@ -24,7 +29,7 @@ class ArchiveInvoicesController extends Controller
     public function destroy(Request $request)
     {
         $id = $request->invoice_id;
-        $flight = invoice::withTrashed()->where('id', $id)->forceDelete();
+        invoice::withTrashed()->where('id', $id)->forceDelete();
         session()->flash('Deleted', __('website/invoice.delete invoice'));
         return redirect()->back();
     }

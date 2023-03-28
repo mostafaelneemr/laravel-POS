@@ -14,10 +14,10 @@ class UserController extends Controller
 
     function __construct()
     {
-         $this->middleware('permission:role-list|role-create|role-edit|role-delete', ['only' => ['index','store']]);
-         $this->middleware('permission:role-create', ['only' => ['create','store']]);
-         $this->middleware('permission:role-edit', ['only' => ['edit','update']]);
-         $this->middleware('permission:role-delete', ['only' => ['destroy']]);
+         $this->middleware('permission:user-list|user-create|user-edit|user-delete', ['only' => ['index','store']]);
+         $this->middleware('permission:user-create', ['only' => ['create','store']]);
+         $this->middleware('permission:user-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:user-delete', ['only' => ['destroy']]);
     }
 
 
@@ -64,7 +64,7 @@ class UserController extends Controller
          $user = User::find($id);
          $roles = Role::pluck('name','name')->all();
          $userRole = $user->roles->pluck('name','name')->all();
-     
+
          return view('backend.users.edit',compact('user','roles','userRole'));
      }
 
@@ -75,30 +75,30 @@ class UserController extends Controller
              'email' => 'required|email|unique:users,email,'.$id,
              'roles' => 'required'
          ]);
- 
+
          $input = $request->all();
- 
+
          if(!empty($input['password'])){
              $input['password'] = Hash::make($input['password']);
          }
          else{
              Arr::except($input,array('password'));
          }
- 
+
          $user = User::find($id);
- 
+
          $user->update(['name' => $request->name,
              'email' => $request->email,
              'password' => Hash::make($request->password),
              'roles_name' => $request->roles,
          ]);
- 
+
          DB::table('model_has_roles')->where('model_id',$id)->delete();
          $user->assignRole($request->input('roles'));
          session()->flash('edit', 'Updated user succesfully');
          return redirect('users');
      }
- 
+
 
      public function destroy($id)
      {
